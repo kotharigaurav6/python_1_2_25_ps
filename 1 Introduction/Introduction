@@ -1,0 +1,86 @@
+Python Programming Language
+---------------------------
+         Language
+User A <-------------> User B
+     Hindi, English, Marathi etc
+
+Language : Acts as a medium of communication
+---------
+         
+         Programming Language
+User <--------------------------> Machine
+       C, C++, Java, Python, .Net etc 
+
+Programming Language :
+---------------------- 
+It is a set of instructions, commmands and other syntaxes, used to create a software.
+
+set of instrctions  ------|    java , python
+commands -----------------|--- program--------|
+syntaxes -----------------|
+
+set of instrctions  ------|    java , python
+commands -----------------|--- program--------|-------Software
+syntaxes -----------------|                           java , python
+
+set of instrctions  ------|    java , python
+commands -----------------|--- program--------|
+syntaxes -----------------|
+
+Software : Along with this, it also acts as an intermediator
+           User <---------> Software <----------> Machine
+        
+Software
+   |-- a. System software (Important)
+            |-- Operating System, Device Drivers etc
+                |-- Windows, Linux etc  
+   |-- b. Application software 
+            |-- Snapchat, fb, insta etc  
+
+Types of Programming Language : 
+    a. Low Level Language
+        |-- Binary Language 
+            |-Advantages
+                i. instructions are given in the form of 0's and 1's 
+                ii. Processing speed is fast
+                iii. Execution time is less 
+                iv. Machine Language
+            |-DisAdvantages
+                i. Programmers are not able to memorize code
+                ii. Updation and Debugging is difficult 
+                iii. Time Consuming
+
+        |-- Assembly Language
+            |-Advantages
+                i. instructions are given in alpha numeric symbols (Mnemonic code)
+                    ADD for Addition, SUB for subtraction, MUL for multiplication etc
+                    CPY, CMP, MOV etc
+                ii. Here we need Assembler as a translator
+                    Assembly Language <--------Assembler---------> Machine Language 
+                iii. Mainly used in Processors 
+
+            |-DisAdvantages
+                i. It is not a portable language 
+                ii. Machine dependent 
+                iii. Time Consuming 
+                iv. One line of Assembly language is converted into multiple lines of machine code. 
+
+                    ADD A,B   --------->   5 = 1010010101
+                                           6 = 0101010101
+                                        ADD  = 0001110001
+                                               1010101010    
+
+    b. Middle Level Language
+        |-- C, C++
+            English like statements<---- instructions
+            Compiler as a translator
+
+    c. High Level Language
+        |-- Java, Python, .Net etc
+
+        i. instructions are given in English like statements 
+        ii. Updation is easier as compared to above two languages 
+        iii.  Debugging is also easier as compared to above two languages
+        iv. It is a portable language 
+        v. Machine Independent 
+        vi. Here we use compiler and interpreter as a translator

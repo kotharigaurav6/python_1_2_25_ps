@@ -1,0 +1,75 @@
+What is python ? 
+                               5 - 2 = 3
+Python is a general purpose , imperative, dynamically typed, object oriented, case sensitive and high level programming language also known for its simple and readable syntax.
+
+name = "Andrew" 
+NAME = "Andrew"
+
+C / C++ / Java
+
+int a = 10
+a = 890
+a = 'g'    x
+
+float b = 45.56
+b = "Hello User"    x
+
+
+In case of python 
+x = 10 (integer)
+...
+x = "Hello User" (string)
+x = "d" 
+x = 'Welcome user' 
+
+x = 56.67 (float)
+
+Object oriented programming language : 
+It is a way of modularizing a program which allocates partitioned memory area for both data and functions and using them as a template and call the copies of such modules on demand.
+
+                        student
+        ___________________|________________
+       |                                    |                 
+     Data                               Function 
+   Name                             void displayDetails(){} 
+   Roll Number                      void checkFees(){} 
+   Age 
+   Course    
+
+Guido Van Rossum---> 1991
+
+loosely typed : 
+ "5"(string) + 2(integer)  = concat = 2 is going to be converted into string = 52
+
+ "5" - 4  = 5 - 4 = 1 
+
+ "Andrew" + 5 = Andrew5
+
+ "Andrew" - 3 = ....     x
+
+ x = 100;
+ x = x + 56 = 100 + 56 = 156 
+
+ x = 234
+ y = x + 67 = 234 + 67 = ....
+------------------------
+ C / C++ / JAVA 
+
+ void display()
+ {
+    statement 1
+    statement 2
+    statement 3
+ }
+
+ Python
+
+statement 0
+
+def display():
+    statement 1
+    statement 2
+    statement 3
+
+statement 4            
+

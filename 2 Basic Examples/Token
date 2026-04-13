@@ -1,0 +1,85 @@
+Token : 
+Token is the smallest unit of information
+They are the building blocks of code. 
+
+Types of Token : 
+1. Keywords 
+Keywords are reserved words, whose meaning is already defined. We cannot use keywords as a variable names. There are 35 keywords in python.
+Ex : if, else, for, while, def etc
+
+2. Identifiers
+User defined names
+constant = uppercase
+variable = lowercase
+function = camel case 
+class = pascal case
+
+Note : 
+Camel case = addProduct, addProductCategory
+Pascal case = Hello, Demo 
+Snake case = add_product, add_product_category 
+Habib case = add-product, add-product-category 
+Upper case = capital letters
+Lower case = small letters 
+
+3. Literals | constant
+PI = 3.14
+MAX = 100 
+
+4. Separators (Punctuators) 
+() = parenthesis
+{} = curly brackets 
+[] = square brackets 
+, = comma 
+: = colon 
+; = semi-colon 
+. = dot
+
+5. Operators 
+Operators are the symbols, which are used to perform some operations on one or more than one operand(variable and constant).
+
+6. Datatype
+Datatype simply represents the type of data. 
+
+7. Variable 
+Variable is the name given to memory location whose value may change during the execution of program.
+Variable is going to be create when ever we sets value in it.
+
+--------------------------------
+Keypoints : 
+
+max = 100
+b = 200.45
+full_name = "andrew Anderson"
+
+Python variable have some naming rules : 
+
+Rule 1 : Allowed characters
+         Letters : a-z, A-Z 
+         Digits : 0-9 
+         Special Symbol : _ (underscore)
+
+Rule 2 : Cannot starts with a digit 
+         1name = "Gaurav"         invalid
+         name1 = "Gaurav"         valid 
+
+Rule 3 : No Special characters are allowed except underscore
+         full*name = "Gaurav Kothari"     invalid 
+         full_name = "Gaurav Kothari"     valid 
+
+Rule 4 : Cannot use python keywords 
+         class = 100           invalid 
+         class_value = 100     valid 
+
+Rule 5 : Case Sensitive 
+         name = "Gaurav"   
+         Name = "Kothari" 
+
+Rule 6 : Meaningfull name
+         total_marks = 375
+         student_name = "John"
+
+Rule 7 : Use Snake case (Python convention)
+        first_name = "Gaurav Kothari"
+
+    
