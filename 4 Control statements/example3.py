@@ -9,5 +9,5 @@ print(math.sqrt(16))
 # Hw
 # Swapping of two numbers using third variable
 # Swapping of two numbers without using third variable 
-# Program to find out area of triaangle by herons formula
+# Program to find out area of triangle by herons formula
 # Program to find out area of circle and perimeter of rectangle
