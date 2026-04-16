@@ -24,6 +24,26 @@
 # for i in range(10,0,-1):
 #     print(i,end=" ")
 
-list = ["apple", "mango", "banana"]
-for fruit in list :
-    print(fruit,end=" ")
+# list = ["apple", "mango", "banana"]
+# for fruit in list :
+#     print(fruit,end=" ")
+
+# for ch in "Hello":
+#     print(ch,end=" ")
+
+# else runs when loop completes normally
+# for i in range(3):
+#     print(i)
+# else:
+#     print("Loop finished")
+
+# else will not runs when loops does not runs completely
+# for i in range(3):
+#     print(i)
+#     if i==1:
+#         break
+# else:
+#     print("Loop finished")
+
+for i in range(5):
+    pass
