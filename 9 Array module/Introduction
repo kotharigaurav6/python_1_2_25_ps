@@ -1,0 +1,12 @@
+Difference:
+List : Homogenous + Heterogenous elements  (any type)
+Array : Homogenous elements (same type only)
+
+Array : 
+Array is a collection of Homogenous elements(same type of elements)
+Array works on the concept of indexing 
+Prerequisite for array allocation is base address 
+Array works on continuous memory allocation 
+Array elements shares same name but differentiable by there indexing
+
+
