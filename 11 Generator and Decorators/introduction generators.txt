@@ -1,0 +1,82 @@
+Generator Function
+
+A generator function uses yield inside a def function to produce values lazily, while a generator expression is a concise, parenthesis-based syntax that returns a generator object.
+
+Generator Function
+
+A generator function is defined like a normal Python function using the def keyword but uses yield instead of return to produce values one at a time. 
+
+Execution: Calling a generator function does not run the function immediately; it returns a generator object that can be iterated over.
+
+State Preservation: The function pauses at each yield and resumes from that point on the next iteration, preserving local variables and execution state.
+
+Generator Expression
+
+A generator expression is a compact way to create a generator object using parentheses () instead of brackets [] used in list comprehensions. 
+
+Execution: Produces values lazily, one at a time, without storing the entire sequence in memory.
+Syntax Example:
+squares = (x**2 for x in range(5))
+for num in squares:
+print(num)
+
+---------------------------
+
+Yes—in Python, if a function uses yield, it is automatically treated as a generator function.
+
+Here’s what that means in simple terms:
+
+A normal function uses return → gives one value and finishes execution.
+A generator function uses yield → gives values one by one without finishing immediately.
+
+🔹 Key point
+
+The moment Python sees yield inside a function, it:
+
+does not execute the function immediately
+instead returns a generator object
+✅ Example
+def my_generator():
+    yield 1
+    yield 2
+    yield 3
+
+g = my_generator()
+print(g)          # generator object
+print(next(g))    # 1
+print(next(g))    # 2
+print(next(g))    # 3
+
+🔹 Important Behavior
+yield pauses the function
+Next time you call next(), it resumes from where it stopped
+
+🔹 Comparison
+Feature	    Normal Function	Generator Function
+Keyword	    return	        yield
+Output	    Single value	Multiple values (one by one)
+Memory	    More	        Efficient
+Execution	Runs fully	    Runs step-by-step
+
+🔹 One more example (practical)
+def count(n):
+    for i in range(n):
+        yield i
+
+for num in count(5):
+    print(num)
+
+
+Output:
+
+0 1 2 3 4
+
+🔥 Important Note
+
+Even if there is only one yield, it is still a generator function:
+
+def test():
+    yield 10
+
+
+✔ Still a generator.

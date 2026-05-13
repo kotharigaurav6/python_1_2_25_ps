@@ -1,0 +1,40 @@
+Function : 
+Function is a self contained block of statement.
+Every function performs some specific task.
+
+Types of Function:
+    a. Built-in function | In-built function | Standard function | Library function | Predefined function : Functions whose definition part is already defined.
+    Ex : math.pow, pow, sys.exist(), len(), sum() etc 
+
+    b. Userdefined function : Functions whose definition part is defined by the programmer according to its programming needs.
+
+    Here we need to use def keyword followed by function name to define function.
+    Ex : def <function_name>(): 
+            statement 1 to n 
+         <function_name>()
+
+Advantages of Function : 
+    1. Function reduces program size
+    2. Function reduces complexity of code
+    3. Function reduces redundancy of code 
+    4. Debugging would be easier 
+    5. We can create n no. of functions 
+    6. A function can be called n no. of times 
+    7. Function increases code reusability
+
+    def printData():
+        print("statement 1")
+        print("statement 2")
+        print("statement 3")
+    printData()
+    printData()
+    printData()
+    printData()
+    printData()    
+
+Functions can be classified as : 
+    1. No argument No return type 
+    2. No argument With return type 
+    3. With argument No return type 
+    4. With argument With return type 
+    

@@ -1,0 +1,397 @@
+A generator function uses yield inside a def function to produce values lazily, while a generator expression is a concise, parenthesis-based syntax that returns a generator object.
+
+Generator Function
+
+A generator function is defined like a normal Python function using the def keyword but uses yield instead of return to produce values one at a time. 
+
+Execution: Calling a generator function does not run the function immediately; it returns a generator object that can be iterated over.
+
+State Preservation: The function pauses at each yield and resumes from that point on the next iteration, preserving local variables and execution state.
+
+Generator Expression
+
+A generator expression is a compact way to create a generator object using parentheses () instead of brackets [] used in list comprehensions. 
+
+Execution: Produces values lazily, one at a time, without storing the entire sequence in memory.
+Syntax Example:
+squares = (x**2 for x in range(5))
+for num in squares:
+print(num)
+
+---------------------------
+
+Yes—in Python, if a function uses yield, it is automatically treated as a generator function.
+
+Here’s what that means in simple terms:
+
+A normal function uses return → gives one value and finishes execution.
+A generator function uses yield → gives values one by one without finishing immediately.
+🔹 Key point
+
+The moment Python sees yield inside a function, it:
+
+does not execute the function immediately
+instead returns a generator object
+✅ Example
+def my_generator():
+    yield 1
+    yield 2
+    yield 3
+
+g = my_generator()
+print(g)          # generator object
+print(next(g))    # 1
+print(next(g))    # 2
+print(next(g))    # 3
+
+🔹 Important Behavior
+yield pauses the function
+Next time you call next(), it resumes from where it stopped
+🔹 Comparison
+Feature	    Normal Function	Generator Function
+Keyword	    return	        yield
+Output	    Single value	Multiple values (one by one)
+Memory	    More	        Efficient
+Execution	Runs fully	    Runs step-by-step
+
+🔹 One more example (practical)
+def count(n):
+    for i in range(n):
+        yield i
+
+for num in count(5):
+    print(num)
+
+
+Output:
+
+0 1 2 3 4
+
+🔥 Important Note
+
+Even if there is only one yield, it is still a generator function:
+
+def test():
+    yield 10
+
+
+✔ Still a generator.
+
+--------------------------
+
+Step-by-step Execution of 
+def count(n):
+    for i in range(n):
+        yield i
+
+for num in count(5):
+    print(num)
+
+
+Step 1: Function definition
+def count(n):
+
+Python sees yield inside → this becomes a generator function
+It does NOT run now, just gets defined
+Step 2: Loop starts
+for num in count(5):
+
+count(5) is called
+❗ But instead of executing, it returns a generator object
+g = count(5)
+
+Step 3: First iteration (for loop calls next())
+
+Internally:
+
+next(g)
+
+
+Execution inside function:
+
+i = 0
+yield 0
+
+yield 0 → sends value 0 to num
+Function pauses here
+
+Output:
+
+0
+
+Step 4: Second iteration
+
+Again:
+
+next(g)
+
+
+Execution resumes from where it stopped:
+
+i = 1
+yield 1
+
+
+Output:
+
+1
+
+Step 5: Third iteration
+i = 2
+yield 2
+
+
+Output:
+
+2
+
+Step 6: Fourth iteration
+i = 3
+yield 3
+
+
+Output:
+
+3
+
+Step 7: Fifth iteration
+i = 4
+yield 4
+
+
+Output:
+
+4
+
+Step 8: Loop ends
+range(5) is finished
+Function ends → raises StopIteration
+for loop automatically stops
+🔥 Internal Visualization
+
+Think like this:
+
+count(5) → generator created
+
+next() → 0 (pause)
+next() → 1 (pause)
+next() → 2 (pause)
+next() → 3 (pause)
+next() → 4 (pause)
+next() → StopIteration
+
+🔹 Important Insight
+
+👉 yield does 3 things at once:
+
+Sends value back
+Saves current state (i, loop position)
+Pauses execution
+
+
+----------------------------------------------------------
+
+Explanation of : 
+squares = (x**2 for x in range(5))
+for num in squares:
+print(num)
+
+You’re using a generator expression here, which is a shorter way of writing a generator function.
+
+✅ Your Code (fixed indentation)
+squares = (x**2 for x in range(5))
+
+for num in squares:
+    print(num)
+
+🔹 What is this line?
+squares = (x**2 for x in range(5))
+
+This is a generator expression
+Similar to:
+def squares_gen():
+    for x in range(5):
+        yield x**2
+
+
+✔ Both create a generator
+
+🔹 Step-by-step execution
+Step 1: Generator is created
+squares = (x**2 for x in range(5))
+
+No calculation happens yet ❗
+Just a generator object is created
+Step 2: Loop starts
+for num in squares:
+
+Internally Python calls:
+next(squares)
+
+Step 3: First iteration
+x = 0
+x**2 = 0
+
+
+Output:
+
+0
+
+Step 4: Second iteration
+x = 1
+x**2 = 1
+
+
+Output:
+
+1
+
+Step 5: Third iteration
+x = 2
+x**2 = 4
+
+
+Output:
+
+4
+
+Step 6: Fourth iteration
+x = 3
+x**2 = 9
+
+
+Output:
+
+9
+
+Step 7: Fifth iteration
+x = 4
+x**2 = 16
+
+
+Output:
+
+16
+
+Step 8: End
+range(5) is finished
+Generator raises StopIteration
+Loop ends automatically
+🔥 Internal Flow
+(x**2 for x in range(5))
+
+next() → 0
+next() → 1
+next() → 4
+next() → 9
+next() → 16
+next() → StopIteration
+
+-----------------------
+list comprehension is not a generator.
+
+But let’s clear the confusion properly 👇
+
+🔹 List Comprehension
+squares = [x**2 for x in range(5)]
+print(squares)
+
+
+👉 Output:
+
+[0, 1, 4, 9, 16]
+
+Creates a list in memory
+Stores all values at once
+Type:
+print(type(squares))  # <class 'list'>
+
+🔹 Generator Expression
+squares = (x**2 for x in range(5))
+print(squares)
+
+
+👉 Output:
+
+<generator object ...>
+
+Does not store all values
+Generates values one by one (lazy evaluation)
+Type:
+print(type(squares))  # <class 'generator'>
+
+Important Insight
+
+Even though syntax looks similar:
+
+[x for x in range(5)]   # list
+(x for x in range(5))   # generator
+
+
+👉 Only () makes it a generator — not []
+
+🔹 When to Use What?
+Use list comprehension → when data is small and you need all values
+Use generator → when data is large or infinite
+
+-------------------------------------------
+
+🔹 1. Generator Function
+
+A generator function is a function that uses yield.
+
+def count(n):
+    for i in range(n):
+        yield i
+
+
+👉 Key points:
+
+Uses yield instead of return
+Does not execute immediately
+When called, it returns a generator object
+🔹 2. Generator (Generator Object)
+
+When you call a generator function:
+
+result = count(5)
+print(result)
+
+
+👉 Output:
+
+<generator object count at 0x...>
+
+
+This result is the generator
+
+🔹 Step-by-step Working
+for num in count(3):
+    print(num)
+
+
+Execution flow:
+
+count(3) → returns generator (no execution yet)
+Loop starts → generator starts execution
+yield 0 → pauses function → returns 0
+Next iteration → resumes → yield 1
+Next → yield 2
+Ends
+
+👉 Output:
+
+0
+1
+2
+
+🔹 Important Difference
+Feature	       Generator Function	  Generator
+What is it?	   Function with yield	  Object created from it
+Example	       def func(): yield	  obj = func()
+Execution	   Defines logic	      Executes lazily
+
+🔹 Generator Expression (Related)
+gen = (x*x for x in range(3))
+
+👉 This directly creates a generator, without a function.

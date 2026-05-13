@@ -1,0 +1,455 @@
+decorators are one of those Python features that feel confusing at first, but once you “see the pattern,” they become very powerful.
+
+🔹 What is a Decorator?
+
+A decorator is a function that modifies another function’s behavior without changing its actual code.
+
+👉 Think of it like:
+
+“Wrapping a function with extra functionality”
+
+🔹 Basic Idea (Step by Step)
+1. Functions are objects in Python
+def greet():
+    print("Hello")
+
+x = greet
+x()   # Hello
+
+
+👉 So we can pass functions as arguments
+
+2. Function inside function
+def outer():
+    def inner():
+        print("Inside inner")
+    inner()
+
+outer()
+
+3. Returning a function
+def outer():
+    def inner():
+        print("Hello from inner")
+    return inner
+
+func = outer()
+func()
+
+🔥 Now combine everything → Decorator
+def my_decorator(func):
+    def wrapper():
+        print("Before function")
+        func()
+        print("After function")
+    return wrapper
+
+🔹 Using decorator manually
+def say_hello():
+    print("Hello")
+
+say_hello = my_decorator(say_hello)
+
+say_hello()
+
+
+👉 Output:
+
+Before function
+Hello
+After function
+
+🔹 Using @ syntax (real decorator style)
+@my_decorator
+def say_hello():
+    print("Hello")
+
+say_hello()
+
+
+👉 Same output, cleaner syntax
+
+🔹 Decorator with Arguments
+def my_decorator(func):
+    def wrapper(name):
+        print("Before")
+        func(name)
+        print("After")
+    return wrapper
+
+@my_decorator
+def greet(name):
+    print("Hello", name)
+
+greet("Gaurav")
+
+Simple One-Line Understanding
+
+👉
+Decorator = function that takes a function, modifies it, and returns a new function
+
+Simple One-Line Understanding
+
+👉
+Decorator = function that takes a function, modifies it, and returns a new function
+
+
+Think of Decorator Like a Wrapper 🎁
+
+You have a function:
+
+def greet(name):
+    print("Hello", name)
+
+
+Now you want:
+👉 something to run before and after this function
+👉 but without changing this function
+
+🔹 Normal Way (without decorator)
+def greet(name):
+    print("Before")
+    print("Hello", name)
+    print("After")
+
+
+❌ Problem: You modified the original function
+
+🔹 Decorator Idea
+
+👉 “I will create another function that wraps this one”
+
+🔹 Step 1: Create wrapper
+def my_decorator(func):
+    def wrapper(name):
+        print("Before")
+        func(name)
+        print("After")
+    return wrapper
+
+🔹 Step 2: Apply it manually
+def greet(name):
+    print("Hello", name)
+
+greet = my_decorator(greet)
+
+
+👉 Now:
+
+greet is replaced by wrapper
+🔹 Step 3: Call it
+greet("Gaurav")
+
+
+👉 Output:
+
+Before
+Hello Gaurav
+After
+
+🔥 VERY SIMPLE UNDERSTANDING
+Before decorator:
+greet → prints Hello
+
+After decorator:
+greet → wrapper → calls original greet
+
+🔹 Now the @ syntax (just shortcut)
+@my_decorator
+def greet(name):
+    print("Hello", name)
+
+
+👉 Python automatically does:
+
+greet = my_decorator(greet)
+
+Short Answer
+
+There are 2 functions because:
+
+👉 One function (my_decorator) is used to accept the original function
+👉 Another function (wrapper) is used to run extra code + call original function later
+
+🔹 Why not just one function?
+
+Let’s try (incorrect idea):
+
+def my_decorator(func):
+    print("Before")
+    func("Gaurav")
+    print("After")
+
+
+❌ Problem:
+
+This runs immediately
+You cannot control when greet() runs
+You lose flexibility
+🔥 Why we NEED inner function (wrapper)
+
+We want this behavior:
+
+👉 “Don’t run now… run later when greet() is called”
+
+So we do:
+
+def my_decorator(func):     # 1. Accept function
+    def wrapper(name):      # 2. Define what to do later
+        print("Before")
+        func(name)
+        print("After")
+    return wrapper          # 3. Return new function
+
+🔹 What each function does
+1. Outer function → my_decorator
+Takes original function (greet)
+Returns a new function (wrapper)
+2. Inner function → wrapper
+Executes when you call greet()
+Adds:
+Before logic
+Calls original function
+After logic
+🔥 Flow (VERY IMPORTANT)
+Step 1:
+greet = my_decorator(greet)
+
+
+👉 Now:
+
+greet → wrapper
+
+Step 2:
+greet("Gaurav")
+
+
+👉 Actually calls:
+
+wrapper("Gaurav")
+
+Step 3:
+
+Inside wrapper:
+
+print("Before")
+call original greet
+print("After")
+
+🔹 Real-Life Analogy
+
+Think:
+
+my_decorator = factory
+wrapper = final product
+
+👉 Factory takes your function and builds a new improved function
+
+🔥 One-line clarity
+
+👉 Outer function = receives function
+👉 Inner function = executes modified behavior later
+
+🔹 SUPER SIMPLE VERSION
+Decorator = function that returns another function
+
+🔥 If you remember ONLY this, you're done:
+greet = my_decorator(greet)
+
+
+👉 That’s why we need 2 functions.
+
+
+✅ Correct Code
+# decorator
+def my_decorator(myfun):
+    def wrapper():
+        print("statement 1")
+        myfun()
+        print("statement 2")
+    return wrapper   # ⭐ VERY IMPORTANT
+
+@my_decorator
+def show():
+    print("This is show function")
+
+show()
+
+🔍 What actually happens step-by-step
+
+When Python sees this:
+
+@my_decorator
+def show():
+
+
+It internally does this:
+
+show = my_decorator(show)
+
+Step 1: show is passed to decorator
+my_decorator(show)
+
+myfun = show
+inside decorator, wrapper is created
+Step 2: decorator returns wrapper
+return wrapper
+
+
+Now:
+
+show = wrapper
+
+
+👉 So show is no longer the original function
+👉 It is now the wrapper function
+
+Step 3: When you call show()
+show()
+
+
+Actually calls:
+
+wrapper()
+
+Step 4: Execution flow
+statement 1
+This is show function
+statement 2
+
+🧠 Why 2 functions?
+
+This is the key concept:
+
+1. Outer function → decorator
+def my_decorator(myfun):
+
+Takes the original function
+Decides what to modify
+2. Inner function → wrapper
+def wrapper():
+
+Controls execution
+Adds extra behavior before/after original function
+💡 Simple Analogy
+
+Think of it like:
+
+👉 Original function = gift
+👉 Decorator = gift wrapper
+
+So:
+
+Before opening → statement 1
+Gift inside → show()
+After opening → statement 2
+
+⚠️ What happens if you DON'T return wrapper?
+
+Your original code:
+
+@my_decorator
+def show():
+
+
+becomes:
+
+show = None
+
+
+So:
+
+show()
+
+
+👉 ❌ Error:
+
+TypeError: 'NoneType' object is not callable
+
+✅ Final Understanding
+Decorator wraps a function
+@decorator = function replacement
+Wrapper controls execution
+
+❓ Why do we need a wrapper function?
+
+Short answer:
+
+👉 Because we don’t want to execute the function immediately
+👉 We want to modify its behavior when it is called later
+
+🔴 What if we DON’T use wrapper?
+
+Let’s try without wrapper:
+
+def my_decorator(myfun):
+    print("statement 1")
+    myfun()
+    print("statement 2")
+
+
+Now:
+
+@my_decorator
+def show():
+    print("This is show function")
+
+What happens?
+
+👉 As soon as Python reads this, it runs:
+
+my_decorator(show)
+
+
+So output becomes:
+
+statement 1
+This is show function
+statement 2
+
+
+BUT...
+
+👉 show becomes None
+👉 You cannot call show() again ❌
+
+✅ Why wrapper is needed
+
+Now see correct version:
+
+def my_decorator(myfun):
+    def wrapper():
+        print("statement 1")
+        myfun()
+        print("statement 2")
+    return wrapper
+
+What changes?
+We do NOT execute myfun() immediately
+Instead, we return a new function (wrapper)
+
+👉 So execution is delayed until:
+
+show()
+
+Key Idea
+Without wrapper:
+
+👉 Function runs at decoration time
+
+With wrapper:
+
+👉 Function runs at call time (this is what we want)
+Most Important Reason
+
+Wrapper allows you to:
+
+✔ Add code before function
+✔ Add code after function
+✔ Control execution
+✔ Reuse logic (logging, authentication, validation, etc.)
+
+💡 Simple Rule to Remember
+
+👉 Decorator must return a function
+👉 That returned function is the wrapper
