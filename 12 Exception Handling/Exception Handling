@@ -1,0 +1,62 @@
+Python Exception Handling : 
+Exceptions are the runtime anomalies(unexpected situation) which may arise during the execution of program and the mechanism of handling such type of exceptions are known as Exception handling mechanism.
+
+Exception Handling Mechanism : 
+    a. Find the problem (Hit the exception)
+    b. Inform that error has occured(Throw the exception)
+    c. Receive the error information(Catch the exception)
+    d. Take corrective measures(Handle the exception)
+
+Keywords used in exception handling : 
+    a. try
+    b. except 
+    c. raise 
+    d. finally
+
+Yes — in Python, exceptions are classes.
+
+More specifically, all exceptions are objects derived from a base class called BaseException. When an error occurs, Python creates an object (instance) of an exception class and raises it.
+
+🔹 Exception Hierarchy (Important Classes)
+
+Here are the main built-in exception classes:
+
+BaseException
+   ├── Exception  ✅ (general program errors)
+   │     ├── ArithmeticError
+   │     │     ├── ZeroDivisionError
+   │     │     ├── OverflowError
+   │     │     └── FloatingPointError
+   │     │
+   │     ├── ValueError
+   │     ├── TypeError
+   │     ├── NameError
+   │     ├── IndexError
+   │     ├── KeyError
+   │     ├── AttributeError
+   │     │
+   │     ├── OSError
+   │     │     ├── FileNotFoundError
+   │     │     ├── PermissionError
+   │     │     └── IOError (alias of OSError)
+   │     │
+   │     ├── ImportError
+   │     │     └── ModuleNotFoundError
+   │     │
+   │     ├── RuntimeError
+   │     ├── StopIteration
+   │     ├── AssertionError
+   │     └── MemoryError
+   │
+   ├── KeyboardInterrupt 
+   ├── SystemExit 
+   └── GeneratorExit 
+
+👉 Python does NOT divide exceptions into checked and unchecked
+
+-- All exceptions occur at runtime
+-- No compile-time checking
+-- No need for throws
+
+In Python:
+👉 All exceptions behave like Java's Unchecked Exceptions
